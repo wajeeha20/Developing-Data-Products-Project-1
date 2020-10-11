@@ -1,0 +1,35 @@
+---
+title: "Developing Data Products Week 2 Assignment"
+author: "Muhammad Hassaan Khan."
+date: "July 6, 2020"
+output: 
+  html_document:
+    keep_md: true
+    theme: paper
+    highlight: kate
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment="#/>")
+```
+
+## Introduction
+
+The goal of this assignment is to create a web page using R Markdown that features a map created with Leaflet. The webpage should be hosted on either Github Pages, RPubs, or NeoCities. The webpage must also contain the date when the document was created.
+
+## Top 10 Most Populous Cities in the Philippines
+
+The map shows the 10 most populous cities in the Philippines. Hover on each location to see how large is the population of the city. The data was taken from http://www.worldatlas.com/webimage/countrys/asia/philippines/phlatlog.htm.
+
+```{r}
+library(leaflet)
+df <- read.csv("locations.csv")
+df %>% leaflet() %>%
+  addTiles() %>%
+  addMarkers(
+    lat = df$lat, 
+    lng = df$long, 
+    popup = paste(df$popup, "<br>", "Population:", df$population),
+    clusterOptions = markerClusterOptions()) %>%
+  addCircleMarkers(radius = sqrt(df$population/10e3))
+```
