@@ -1,6 +1,6 @@
 # Developing Data Products Week 2 Assignment
-Muhammad Hassaan Khan.  
-July 6, 2020  
+Wajeeha Batool.  
+October 12, 2020  
 
 
 
